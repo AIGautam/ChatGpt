@@ -4,13 +4,36 @@ export const dataContext = createContext()
 
 function UserContext({ children }) {
     const [input, setInput] = useState("")
-    async function sent(prompt) {
-        await run(prompt)
+    const [showResult,setShowResult]= useState(false);
+    const [loading,setLoading]= useState(false);
+    const [resultData,setResultData] = useState("")
+    const [recentPrompt, setRecentPrompt] = useState("")
+
+
+    async function sent(input) {
+        setResultData("")
+        setShowResult(true)
+        setRecentPrompt(input)
+        setLoading(true)
+        
+        let response = await run(input)
+        setResultData(response);
+        setLoading(false)
+        setInput("")
     }
     const data = {
         input,
         setInput,
-        sent
+        sent,
+        loading,
+        setLoading,
+        showResult,
+        setShowResult,
+        resultData,
+        setResultData,
+        recentPrompt,
+        setRecentPrompt
+
     }
     return (
         <>

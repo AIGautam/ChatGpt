@@ -9,6 +9,7 @@
     gap: 20px;
     align-items: start;
     font-size: 20px;
+    scrollbar-width: none;
 }
 .sidebar svg{
     width: 30px;
@@ -53,4 +54,10 @@
     background-color: rgb(128, 133, 134);
     padding: 15px;
     border-radius: 30px;
+}
+
+@media (max-width:600px) {
+    .sidebar{
+        display: none;
+    }
 }

@@ -7,6 +7,9 @@
     background-color: var(--btn-background-color);
     transition: all 0.5s;
     box-shadow: 1px 1px 5px black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .darkmodebtn svg{
     width: 40px;

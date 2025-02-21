@@ -1,23 +1,39 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { GiHamburgerMenu } from "react-icons/gi";
 import { FaPlus } from "react-icons/fa6";
 import { MdMessage } from "react-icons/md";
 import "./Sidebar.css"
+import { dataContext } from '../../context/UserContext';
 function Sidebar() {
-    const[extent,setExtent] = useState(false)
+    const [extend, setExtend] = useState(false)
+    const { sent, prevPrompt, newChat } = useContext(dataContext)
+    async function loadPrevPrompt(prompt) {
+        sent(prompt)
+    }
     return (
         <div className='sidebar'>
-            <GiHamburgerMenu id='ham' onClick={()=>{
-                setExtent(prev=>!prev)
-            }}/>
-            <div className="newchat">
+            <GiHamburgerMenu id="ham" onClick={() => {
+                setExtend(prev => !prev)
+
+            }} />
+            <div className="newchat" onClick={() => {
+                newChat()
+            }}>
                 <FaPlus />
-                {extent?<p>New Chat</p>:null}
+                {extend ? <p>New Chat</p> : null}
             </div>
-            <div className="recent">
-                <MdMessage />
-                {extent?<p>Who are You</p>:null}
-            </div>
+            {prevPrompt.map((item, index) => {
+                return (
+                    <div className="recent" onClick={() => {
+                        loadPrevPrompt(item)
+                    }}>
+                        <MdMessage />
+                        {extend ? <p>{item.slice(0, 10) + "..."}</p> : null}
+                    </div>
+                )
+
+            })}
+
         </div>
     )
 }

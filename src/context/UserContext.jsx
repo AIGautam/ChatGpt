@@ -8,16 +8,21 @@ function UserContext({ children }) {
     const [loading,setLoading]= useState(false);
     const [resultData,setResultData] = useState("")
     const [recentPrompt, setRecentPrompt] = useState("")
+    const [prevPrompt, setPrevPrompt] = useState([]);
 
-
+    function newChat(){
+        setShowResult(false)
+        setLoading(false)
+    }
     async function sent(input) {
         setResultData("")
         setShowResult(true)
         setRecentPrompt(input)
         setLoading(true)
+        setPrevPrompt(prev=>[...prev,input])
         
         let response = await run(input)
-        setResultData(response);
+        setResultData(response.split("**") && response.split("*"));
         setLoading(false)
         setInput("")
     }
@@ -32,7 +37,10 @@ function UserContext({ children }) {
         resultData,
         setResultData,
         recentPrompt,
-        setRecentPrompt
+        setRecentPrompt,
+        prevPrompt,
+        setPrevPrompt,
+        newChat
 
     }
     return (

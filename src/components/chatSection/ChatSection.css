@@ -30,6 +30,7 @@
     justify-content: center;
     flex-direction: column;
     font-size: 2vmax;
+    text-align: center;
 }
 
 .headings span:nth-child(1) {
@@ -141,5 +142,12 @@
     }
     100%{
         background-position: 800px 0px;
+    }
+}
+
+@media (max-width:800px) {
+    .headings{
+        font-size: 1.5vmax;
+        padding: 10px;
     }
 }

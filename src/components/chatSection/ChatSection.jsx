@@ -35,10 +35,11 @@ function ChatSection() {
             </div>
             <div className="bottomsection">
                 <input onChange={(e) => setInput(e.target.value)} type="text" placeholder='Enter a prompt' value={input} />
-                <button id='sentbtn' onClick={() => {
+                {input ? <button id='sentbtn' onClick={() => {
                     sent(input)
                 }}><FiSend />
-                </button>
+                </button> : null}
+
                 <Darkmode />
             </div>
         </div>

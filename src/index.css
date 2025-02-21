@@ -25,3 +25,9 @@
   --btn-color:black;
   --hover-btn-background-color:rgb(255, 255, 255,0.59);
 }
+
+@media (max-width:600px) {
+  .seperation{
+    display: none;
+  }
+}
